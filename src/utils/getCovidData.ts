@@ -23,6 +23,7 @@ export const getCovidData = async () => {
           ?.textContent?.trimEnd(),
         totalRecovered: row.querySelector("td:nth-child(7)")?.textContent,
         activeCases: row.querySelector("td:nth-child(8)")?.textContent,
+        validTill: new Date().getTime() + 1000 * 60 * 60 * 6,
       };
     });
     return list;

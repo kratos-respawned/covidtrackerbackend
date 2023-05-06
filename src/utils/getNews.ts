@@ -27,10 +27,14 @@ export const getNews = async () => {
         const data = newsList.map((news) => {
           return {
             image:
-              url + news.querySelector(".imagelink>img")?.getAttribute("src"),
-            title: news.querySelector(".caption a.title")?.textContent,
-            description: news.querySelector(".snippet")?.textContent,
-            url: news.querySelector(".caption a.title")?.getAttribute("href"),
+              url + news.querySelector(".imagelink>img")?.getAttribute("src") ||
+              "",
+            title: news.querySelector(".caption a.title")?.textContent || "",
+            description: news.querySelector(".snippet")?.textContent || " ",
+            url:
+              news.querySelector(".caption a.title")?.getAttribute("href") ||
+              " ",
+            validTill: new Date().getTime() + 1000 * 60 * 60 * 6,
           };
         });
         return data;
