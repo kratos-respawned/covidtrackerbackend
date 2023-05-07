@@ -5,7 +5,7 @@ export const getNews = async () => {
   let previousHeight;
   let items: any[] = [];
   const scrollDelay = 600;
-  const itemCount = 20;
+  const itemCount = 30;
   const url = "https://www.bing.com";
   const main = async () => {
     const browser: Browser = await getBrowser();

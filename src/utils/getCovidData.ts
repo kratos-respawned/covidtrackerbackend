@@ -16,13 +16,16 @@ export const getCovidData = async () => {
     );
     const list = rows.slice(0, 17).map((row) => {
       return {
-        country: row.querySelector("td:nth-child(2)")?.textContent,
-        totalCases: row.querySelector("td:nth-child(3)")?.textContent,
-        totalDeaths: row
-          .querySelector("td:nth-child(5)")
-          ?.textContent?.trimEnd(),
-        totalRecovered: row.querySelector("td:nth-child(7)")?.textContent,
-        activeCases: row.querySelector("td:nth-child(8)")?.textContent,
+        country: row.querySelector("td:nth-child(2)")?.textContent || "",
+        totalCases: row.querySelector("td:nth-child(3)")?.textContent || "",
+        newCases: row.querySelector("td:nth-child(4)")?.textContent || "",
+        totalDeaths:
+          row.querySelector("td:nth-child(5)")?.textContent?.trimEnd() || "",
+        newDeaths: row.querySelector("td:nth-child(6)")?.textContent || "",
+        totalRecovered: row.querySelector("td:nth-child(7)")?.textContent || "",
+        newRecovered: row.querySelector("td:nth-child(8)")?.textContent || "",
+        activeCases: row.querySelector("td:nth-child(9)")?.textContent || "",
+
         validTill: new Date().getTime() + 1000 * 60 * 60 * 6,
       };
     });

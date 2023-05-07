@@ -4,11 +4,21 @@ import mongoose from "mongoose";
 import express from "express";
 import News from "./schema/news";
 import mostAffectedCountries from "./schema/top_contries";
+import dotenv from "dotenv";
+import cors from "cors";
 const app = express();
-mongoose.connect("mongodb://127.0.0.1:27017/covid").then(() => {
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+dotenv.config();
+if (!process.env.MONGO_URL) throw new Error("MONGO_URL not found");
+mongoose.connect(process.env.MONGO_URL).then(() => {
   console.log("Connected to MongoDB");
 });
-app.get("/", async (req, res) => {
+
+app.get("/news", async (req, res) => {
   const news = await News.find({ validTill: { $gt: new Date().getTime() } });
   if (news.length === 0) {
     const data = await getNews();
@@ -18,7 +28,6 @@ app.get("/", async (req, res) => {
     }, 0);
     res.json(data).status(200);
   } else {
-    console.log("cache hit");
     res.json(news).status(200);
   }
 });
@@ -38,7 +47,8 @@ app.get("/countryWise", async (req, res) => {
     res.json(affectedCountries).status(200);
   }
 });
+const PORT = process.env.PORT || 5173;
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
