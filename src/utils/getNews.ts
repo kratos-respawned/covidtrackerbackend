@@ -41,10 +41,14 @@ export const getNews = async () => {
       }, url);
       items = [...items, ...news];
     }
-    await page.close();
+
+    setTimeout(async () => {
+      await page.close();
+      await browser.close();
+    }, 0);
     return items;
   };
-
   const data = await main();
+
   return data;
 };

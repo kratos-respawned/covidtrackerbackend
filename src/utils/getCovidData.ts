@@ -31,6 +31,9 @@ export const getCovidData = async () => {
     });
     return list;
   });
-  await page.close();
+  setTimeout(async () => {
+    await page.close();
+    await browser.close();
+  }, 0);
   return data;
 };
