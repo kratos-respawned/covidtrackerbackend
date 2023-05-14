@@ -1,4 +1,4 @@
-import { getBrowser } from "../lib/BrowserEnv";
+import { getBrowser } from "../lib/BrowserEnv.js";
 
 export const getCovidData = async () => {
   const browser = await getBrowser();

@@ -1,9 +1,9 @@
-import { getCovidData } from "./utils/getCovidData";
-import { getNews } from "./utils/getNews";
+import { getCovidData } from "./utils/getCovidData.js";
+import { getNews } from "./utils/getNews.js";
 import mongoose from "mongoose";
 import express from "express";
-import News from "./schema/news";
-import mostAffectedCountries from "./schema/top_contries";
+import News from "./schema/news.js";
+import mostAffectedCountries from "./schema/top_contries.js";
 import dotenv from "dotenv";
 import cors from "cors";
 const app = express();

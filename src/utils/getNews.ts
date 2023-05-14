@@ -1,5 +1,5 @@
 import { Browser } from "puppeteer";
-import { getBrowser } from "../lib/BrowserEnv";
+import { getBrowser } from "../lib/BrowserEnv.js";
 
 export const getNews = async () => {
   let previousHeight;
