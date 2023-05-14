@@ -6,6 +6,7 @@ import News from "./schema/news.js";
 import mostAffectedCountries from "./schema/top_contries.js";
 import dotenv from "dotenv";
 import cors from "cors";
+import { getVaccinationData } from "./utils/getVaccinationData.js";
 const app = express();
 app.use(
   cors({
@@ -19,6 +20,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 });
 
 app.get("/news", async (req, res) => {
+  console.log("API called");
   const news = await News.find({ validTill: { $gt: new Date().getTime() } });
   if (news.length === 0) {
     const data = await getNews();
@@ -33,6 +35,7 @@ app.get("/news", async (req, res) => {
 });
 
 app.get("/countryWise", async (req, res) => {
+  console.log("API called");
   const affectedCountries = await mostAffectedCountries.find({
     validTill: { $gt: new Date().getTime() },
   });
@@ -46,6 +49,12 @@ app.get("/countryWise", async (req, res) => {
   } else {
     res.json(affectedCountries).status(200);
   }
+});
+app.get("/vaccinationData", async (req, res) => {
+  console.log("API called");
+  const data= await getVaccinationData();
+  
+  res.json(data).status(200);
 });
 const PORT = process.env.PORT || 5173;
 

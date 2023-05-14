@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "build": "swc ./src -d ./out --source-maps",
-    "watch": "swc ./src -w",
-    "start": "node dist/index.js",
-    "dev": "concurrently \"swc ./src -w -d ./out  \" \"npm run start\""
+    "watch": "swc ./src -w -d ./out --source-maps",
+    "tsw":"tsc -w",
+    "start": "node out/index.js",
+    "dev": "nodemon out/index.js"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,2 @@
+import mongoose from"mongoose";var mostAffectedCountriesModel=new mongoose.Schema({country:String,totalCases:String,newCases:String,totalDeaths:String,newDeaths:String,totalRecovered:String,newRecovered:String,activeCases:String,validTill:Number});var mostAffectedCountries=mongoose.model("mostAffectedCountries",mostAffectedCountriesModel);export default mostAffectedCountries;
+//# sourceMappingURL=top_contries.js.map
