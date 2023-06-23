@@ -38,12 +38,12 @@ app.get("/countryWise", async (req, res) => {
   console.log("API called");
   
   const affectedCountries = await mostAffectedCountries.find({
-    // validTill: { $gt: new Date().getTime() },
+    validTill: { $gt: new Date().getTime() },
   });
   if (affectedCountries.length === 0) {
     const data = await getCovidData();
     setTimeout(async () => {
-      // await mostAffectedCountries.deleteMany({});
+      await mostAffectedCountries.deleteMany({});
       await mostAffectedCountries.insertMany(data);
     }, 0);
     res.json(data).status(200);
